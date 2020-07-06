@@ -9,6 +9,6 @@ urlpatterns = [
     
     path("", views.index, name="index"),
     path("<str:title>", views.title, name="title"),
-    path("/query", views.query, name="query"),
+    path("query", views.query, name="query"),
 
 ]

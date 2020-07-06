@@ -5,9 +5,6 @@ from django import forms
 from . import util
 
 
-#class QueryForm(forms.Form):
-   # entry = forms.CharField(label="Search Encyclopedia").__class__("search")
-
 
 def index(request):
     return render(request, "encyclopedia/index.html", {
@@ -24,6 +21,8 @@ def title(request, title):
     response = util.get_entry(title)
 
     if response is None:
+
+        print("wwjsjsj")
 
         return render(request, "encyclopedia/error.html", {
             "message" : "requested page was not found", 
@@ -42,7 +41,7 @@ def query(request):
 
         entry = request.POST['q']
 
-        #print("hola")
+        print("hola")
         print(entry)
 
         response = util.get_entry(entry)
@@ -51,7 +50,7 @@ def query(request):
         if response is None:
 
              return render(request, "encyclopedia/error.html", {
-            "message" : "requested page was not found", 
+            "message" : "requested ", 
         })
 
         return render(request, "encyclopedia/response.html", {
