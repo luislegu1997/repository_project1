@@ -3,6 +3,7 @@ from django.http import HttpResponse
 import markdown2
 from django import forms
 from . import util
+import re
 
 
 
@@ -13,16 +14,10 @@ def index(request):
 
 
 def title(request, title):
-
-    #if request.method == "POST":
-
-
     
     response = util.get_entry(title)
 
     if response is None:
-
-        print("wwjsjsj")
 
         return render(request, "encyclopedia/error.html", {
             "message" : "requested page was not found", 
@@ -36,23 +31,31 @@ def title(request, title):
 
 
 def query(request):
-
+    #breakpoint()
     if request.method == "POST":
 
-        entry = request.POST['q']
-
-        print("hola")
-        print(entry)
+        entry = request.POST['q'].lower()
 
         response = util.get_entry(entry)
 
 
         if response is None:
 
-             return render(request, "encyclopedia/error.html", {
-            "message" : "requested ", 
-        })
+            entries = util.list_entries()
 
+            possible_matches = []
+
+            for i in entries:
+            
+                if entry in i.lower():
+
+                    possible_matches.append(i)
+            
+            return render(request,  "encyclopedia/matches.html", {
+                "matches" : possible_matches,
+            })
+            
+        
         return render(request, "encyclopedia/response.html", {
        "response" : markdown2.markdown(response),
        "title" : entry
