@@ -13,7 +13,7 @@ def index(request):
     })
 
 
-def title(request, title):
+def search(request, title):
     
     response = util.get_entry(title)
 
@@ -70,7 +70,30 @@ def query(request):
 
 
 
+def newpage(request):
 
+    if request.method == "POST":
+
+        new_page = request.POST
+
+        title = new_page["newpage_title"]
+
+        content= new_page['newpage_content']
+
+        entries = util.list_entries()
+
+        for entry in entries:
+
+            if entry.lower() == title.lower():
+
+                return render(request, "encyclopedia/error.html", {
+
+                    "message": "title already exists"
+                })
+
+        util.save_entry(title,content)
+
+    return render(request, "encyclopedia/newpage.html")
 
 
 
