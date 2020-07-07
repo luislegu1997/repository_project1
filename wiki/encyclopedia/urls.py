@@ -9,5 +9,6 @@ urlpatterns = [
     
     path("", views.index, name="index"),
     path("query", views.query, name="query"),
-    path("title-<str:title>", views.title, name="title"),
+    path("search-<str:title>", views.search, name="link"),
+    path("newpage", views.newpage, name="newpage"),
 ]
