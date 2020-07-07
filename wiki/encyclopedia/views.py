@@ -29,7 +29,7 @@ def title(request, title):
        "title" : title
    })
 
-   # return HttpResponse("Hello, world!")
+
 
 
 
