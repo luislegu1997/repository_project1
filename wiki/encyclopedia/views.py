@@ -50,7 +50,14 @@ def query(request):
                 if entry in i.lower():
 
                     possible_matches.append(i)
-            
+
+            if len(possible_matches) == 0:
+
+                return render(request, "encyclopedia/matches.html", {
+                    "no_matches" : "no results"
+
+                })
+
             return render(request,  "encyclopedia/matches.html", {
                 "matches" : possible_matches,
             })

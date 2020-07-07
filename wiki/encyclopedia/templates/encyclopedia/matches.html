@@ -6,6 +6,12 @@
     <title>Document</title>
 </head>
 <body>
+    {% if no_matches %}
+
+        {{no_matches}}
+
+    {% endif %}
+
     <ul> 
         {% for match in matches %}
     
