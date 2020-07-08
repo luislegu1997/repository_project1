@@ -6,30 +6,36 @@
 {% endblock %}
 
 {% block body %}
-    <div class="row container"> 
 
-         Create New Page
 
-    </div>
+   <center> 
 
-    <div class="row container"> 
+        <h6>Create New Page</h6>    
 
-        <form action="{% url 'encyclopedia:newpage' %}" method="post"> 
-            {% csrf_token %}
-            <div class="row container">
-                <input placeholder="title" name="newpage_title" type="text">
-            </div>
+        <div class="container">
+
+            <form action="{% url 'encyclopedia:newpage' %}" method="post"> 
+                {% csrf_token %}
+            
+                <div style="margin-bottom:2%"> 
+                    <input placeholder="title" name="newpage_title" type="text">
+                </div>
+        
+                <div> 
+                    <textarea name="newpage_content" placeholder="markdown content" id="txtarea" ></textarea>
+                </div>
+
+                <div>
+                    <button>Save</button>
+                </div>
+
+            </form>
+
+        </div>
+
+    </center>
     
-            <div class="row container">
-                <textarea name="newpage_content"  placeholder="markdown content" id="txtarea" cols="90" rows="5"></textarea>
-            </div>
 
-            <div class="row container">
-                <button>Save</button>
-            </div>
-
-        </form>
-    </div>
 
 {% endblock %}    
 
