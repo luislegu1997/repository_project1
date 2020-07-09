@@ -5,6 +5,7 @@ from django import forms
 from . import util
 import re
 from django.urls import reverse
+from random import choice
 
 
 
@@ -118,6 +119,19 @@ def editpage(request, entry):
     })
 
 
+def random(request):
+
+    entries = util.list_entries()
+
+    random = choice(entries)
+
+    content = util.get_entry(random)
+
+    return render(request, "encyclopedia/response.html" , {
+
+        "title": random,
+        "response": markdown2.markdown(content),
+    })
 
 
 
