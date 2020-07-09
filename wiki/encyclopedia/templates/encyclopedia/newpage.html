@@ -10,9 +10,9 @@
 
    <center> 
 
-        <h6>Create New Page</h6>    
-
         <div class="container">
+
+            <h6>Create New Page</h6>    
 
             <form action="{% url 'encyclopedia:newpage' %}" method="post"> 
                 {% csrf_token %}
@@ -22,7 +22,7 @@
                 </div>
         
                 <div> 
-                    <textarea name="newpage_content" placeholder="markdown content" id="txtarea" ></textarea>
+                    <textarea name="newpage_content" placeholder="markdown content" id="textarea" ></textarea>
                 </div>
 
                 <div>
