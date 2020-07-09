@@ -9,4 +9,8 @@
 
     {{response|safe}}
 
+    <form action="{% url 'encyclopedia:editpage' entry=title %}">
+        <button>Edit</button>
+    </form>
+
 {% endblock %}

@@ -1,9 +1,11 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render, redirect
+from django.http import HttpResponse , HttpResponseRedirect
 import markdown2
 from django import forms
 from . import util
 import re
+from django.urls import reverse
+
 
 
 
@@ -31,7 +33,7 @@ def search(request, title):
 
 
 def query(request):
-    #breakpoint()
+
     if request.method == "POST":
 
         entry = request.POST['q'].lower()
@@ -95,6 +97,25 @@ def newpage(request):
 
     return render(request, "encyclopedia/newpage.html")
 
+
+def editpage(request, entry):
+
+    if request.method == "POST":
+
+        new_content = request.POST['edited_content']
+
+        util.save_entry(entry, new_content)
+
+        return HttpResponseRedirect(reverse("encyclopedia:search", kwargs={"title" : entry}))
+
+    markdown = util.get_entry(entry)
+
+    return render(request, "encyclopedia/editpage.html" ,{
+
+        "title": entry,
+        "content" : markdown,
+
+    })
 
 
 
