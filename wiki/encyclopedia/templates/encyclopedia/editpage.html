@@ -11,7 +11,7 @@
     <form action="{% url 'encyclopedia:editpage' entry=title %}" method= "post"> 
         {% csrf_token %}
         <div>
-            <h1>{{title}}</h1>
+            <h1 style="text-transform:capitalize">{{title}}</h1>
         </div>
 
         <div> 
