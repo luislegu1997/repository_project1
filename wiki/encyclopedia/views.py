@@ -96,6 +96,8 @@ def newpage(request):
 
         util.save_entry(title,content)
 
+        return HttpResponseRedirect(reverse("encyclopedia:search", kwargs={"title" : title}))
+        
     return render(request, "encyclopedia/newpage.html")
 
 

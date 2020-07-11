@@ -9,8 +9,6 @@
 
     {{response|safe}}
 
-    <form action="{% url 'encyclopedia:editpage' entry=title %}">
-        <button>Edit</button>
-    </form>
+    <a href="{% url 'encyclopedia:editpage' entry=title %}">Edit</a>
 
 {% endblock %}
